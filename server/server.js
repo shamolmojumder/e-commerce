@@ -31,5 +31,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
-    console.log(`Sever running on${process.env.DEV_MODE} mode on ${PORT}`.bgCyan.white);
+    console.log(`Sever running on ${process.env.DEV_MODE} mode on ${PORT}`.bgCyan.white);
 })
