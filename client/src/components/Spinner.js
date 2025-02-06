@@ -6,6 +6,7 @@ const Spinner = () => {
     const [count, setCount] = useState(5);
     const navigate = useNavigate();
     const location = useLocation();
+    console.log(location);
     useEffect(() => {
         const interval = setInterval(() => {
             setCount((prevValue) => --prevValue)

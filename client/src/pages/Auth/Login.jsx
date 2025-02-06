@@ -18,7 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API}/api/1/auth/login`, {
+      const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/login`, {
         email,
         password
       });
@@ -31,6 +31,7 @@ const Login = () => {
         })
         localStorage.setItem("auth", JSON.stringify(res.data))
         navigate(location.state || "/");;
+        // console.log(res.data);
       } else {
         toast.error(res.data.message);
       }
