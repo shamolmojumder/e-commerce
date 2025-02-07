@@ -1,36 +1,40 @@
-import express from 'express';
-import colors from 'colors';
-import dotenv from 'dotenv'
-import morgan from 'morgan';
-import connectDB from './config/db.js';
+import express from "express";
+import colors from "colors";
+import dotenv from "dotenv";
+import morgan from "morgan";
+import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
-import cors from "cors"
-// configure env
+import cors from "cors";
+
+//configure env
 dotenv.config();
 
-//database connection 
+//databse config
 connectDB();
 
-//rest object creation
+//rest object
 const app = express();
 
-//middlewire
+//middelwares
 app.use(cors());
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
+//routes
+app.use("/api/v1/auth", authRoutes);
 
-//routers
-app.use('/api/v1/auth', authRoutes);
-
-
+//rest api
 app.get("/", (req, res) => {
-    res.send('<h1>Welcomme to our Server</h1>')
-})
+  res.send("<h1>Welcome to ecommerce app</h1>");
+});
 
+//PORT
+const PORT = process.env.PORT || 8080;
 
-const PORT = process.env.PORT;
-
+//run listen
 app.listen(PORT, () => {
-    console.log(`Sever running on ${process.env.DEV_MODE} mode on ${PORT}`.bgCyan.white);
-})
+  console.log(
+    `Server Running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgCyan
+      .white
+  );
+});
