@@ -7,7 +7,7 @@ const AuthProvider = ({ children }) => {
     user: null,
     token: "",
   });
-
+  console.log("useauth", auth);
   //default axios
   axios.defaults.headers.common["Authorization"] = auth?.token;
 
@@ -32,5 +32,6 @@ const AuthProvider = ({ children }) => {
 
 // custom hook
 const useAuth = () => useContext(AuthContext);
+
 
 export { useAuth, AuthProvider };
