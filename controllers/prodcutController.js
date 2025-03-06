@@ -1,7 +1,8 @@
 import productModel from '../models/productModel.js'
-import fs from 'fs'
-    ;
+import fs from 'fs';
 import slugify from 'slugify';
+
+//crate product 
 export const createProductController = async (req, res) => {
     try {
         const { name, slug, description, price, category, quantity, shipping } = req.fields;
@@ -25,7 +26,12 @@ export const createProductController = async (req, res) => {
             products.photo.data = fs.readFileSync(photo.path)
             products.photo.contentType = photo.type
         }
-
+        await products.save()
+        res.status(201).send({
+            success: true,
+            message: 'Product created successfully',
+            products,
+        })
     } catch (error) {
         console.log(error)
         res.status(500).send({
@@ -35,3 +41,10 @@ export const createProductController = async (req, res) => {
         })
     }
 }
+
+// get all product 
+export const getProductController = () => {
+
+
+}
+
