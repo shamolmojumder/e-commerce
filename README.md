@@ -2,4 +2,4 @@ Learn from youtube
 Used MVC
 
 MERN project
-Products API CRUD with image upload Ecommerce Mern App Mern Stack Project 14
+18 React Category CRUD Ecommerce Mern App Mern Stack Project
