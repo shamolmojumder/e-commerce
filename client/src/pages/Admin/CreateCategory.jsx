@@ -4,9 +4,14 @@ import Layout from '../../components/Layout/Layout'
 import toast from "react-hot-toast";
 import axios from 'axios';
 import CategoryForm from '../../components/Form/CategoryForm';
+
+import { Modal } from 'antd';
+
 const CreateCategory = () => {
     const [categories, setCategories] = useState([]);
     const [name, setName] = useState("");
+    const [visable, setVisable] = useState(false);
+    // console.log(visable);
 
     //handle Form
     const handleSubmit = async (e) => {
@@ -71,7 +76,7 @@ const CreateCategory = () => {
                                                 <tr>
                                                     <td key={c._id}> {c.name}</td>
                                                     <td>
-                                                        <button className='btn btn-primary ms-2'>Edit</button>
+                                                        <button className='btn btn-primary ms-2' onClick={() => setVisable(true)}>Edit</button>
                                                         <button className='btn btn-danger ms-2'>Delete</button>
                                                     </td>
                                                 </tr>
@@ -80,8 +85,10 @@ const CreateCategory = () => {
                                     }
                                 </tbody>
                             </table>
-
                         </div>
+                        <Modal onCancel={() => setVisable(false)} footer={null}>
+                            <h1>hello</h1>
+                        </Modal>
                     </div>
                 </div>
             </div>
