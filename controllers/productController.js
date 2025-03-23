@@ -103,24 +103,23 @@ export const productPhotoController = async (req, res) => {
 };
 
 
-// delete controller
+//delete controller
 export const deleteProductController = async (req, res) => {
     try {
-        await productModel.findByIdAndDelete(req.params.id).select("-photo")
+        await productModel.findByIdAndDelete(req.params.pid).select("-photo");
         res.status(200).send({
             success: true,
-            message: "Product deleted successfully"
-        })
+            message: "Product Deleted successfully",
+        });
     } catch (error) {
         console.log(error);
         res.status(500).send({
             success: false,
-            message: "error while deleting product",
-            error
-        })
+            message: "Error while deleting product",
+            error,
+        });
     }
-}
-
+};
 
 
 //
