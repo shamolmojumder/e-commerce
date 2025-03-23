@@ -2,4 +2,4 @@ Learn from youtube
 Used MVC
 
 MERN project
-18 React Category CRUD Ecommerce Mern App Mern Stack Project 17:00
+Create Product Form Ecommerce Mern App Mern Stack Project | Admin Panel form 15:00
