@@ -2,4 +2,4 @@ Learn from youtube
 Used MVC
 
 MERN project
-Create Product Form Ecommerce Mern App Mern Stack Project | Admin Panel form 15:00
+Category Price Pagination filters Ecommerce Mern App Mern Stack Project 06:09
