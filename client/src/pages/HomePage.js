@@ -3,13 +3,14 @@ import Layout from "./../components/Layout/Layout";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { Checkbox } from 'antd';
+import { Checkbox, Radio } from 'antd';
+import { Prices } from "../components/Prices";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
-
+  const [radio, setRadio] = useState([])
   //get all categories
   const getAllCategories = async () => {
     try {
@@ -61,9 +62,20 @@ const HomePage = () => {
               </Checkbox>
             ))}
           </div>
+          {/* //filter by price */}
+          <h4 className="text-center mt-4">Filter by Price</h4>
+          <div className="d-flex flex-column">
+            <Radio.Group onChange={e => setRadio(e.target.value)}>
+              {Prices?.map(p => (
+                <div key={p._id}>
+                  <Radio value={p.array}> {p.name} </Radio>
+                </div>
+              ))}
+            </Radio.Group>
+          </div>
         </div>
         <div className="col-md-9">
-          {JSON.stringify(checked, null, 4)}
+          {JSON.stringify(radio, null, 4)}
           <h1 className="text-center"> All products</h1>
           <div className="d-flex flex-wrap">
             {
