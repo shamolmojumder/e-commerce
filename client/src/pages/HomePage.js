@@ -8,6 +8,7 @@ import { Prices } from "../components/Prices";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  console.log(products);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
@@ -142,6 +143,7 @@ const HomePage = () => {
                     <p className="card-text">{p.description.substring(0, 20)} ...</p>
                     <p className="card-text text-danger">$ {p.price}</p>
                     <p className="card-text text-success">{p.category.name}</p>
+
                     <button href="#" className="btn btn-primary ms-1">More details</button>
                     <button href="#" className="btn btn-secondary ms-1">Add to card</button>
 
