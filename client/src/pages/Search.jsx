@@ -3,7 +3,7 @@ import Layout from "./../components/Layout/Layout";
 import { useSearch } from '../context/search';
 const Search = () => {
     const [values, setValues] = useSearch();
-    console.log(values.length);
+    console.log(values);
     return (
         <Layout title={"search results"}>
             <div className="container">
@@ -20,7 +20,7 @@ const Search = () => {
                                         <h5 className="card-title">{p.name}</h5>
                                         <p className="card-text">{p.description.substring(0, 20)} ...</p>
                                         <p className="card-text text-danger">$ {p.price}</p>
-                                        <p className="card-text text-success">{p.category.name}</p>
+
 
                                         <button href="#" className="btn btn-primary ms-1">More details</button>
                                         <button href="#" className="btn btn-secondary ms-1">Add to card</button>
