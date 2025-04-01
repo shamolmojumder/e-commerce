@@ -11,7 +11,7 @@ const HomePage = () => {
   const navigate = useNavigate()
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  console.log(categories);
+  console.log(products);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
@@ -41,6 +41,7 @@ const HomePage = () => {
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
+      // console.log("get all products" + data.products);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -144,7 +145,7 @@ const HomePage = () => {
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text">{p.description.substring(0, 20)} ...</p>
                     <p className="card-text text-danger">$ {p.price}</p>
-                    <p className="card-text text-success">{p.category?._id}</p>
+                    <p className="card-text text-success">{p.category}</p>
                     <button href="#" className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>More details</button>
                     <button href="#" className="btn btn-secondary ms-1">Add to card</button>
 

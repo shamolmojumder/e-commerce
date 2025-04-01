@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const ProductDetails = () => {
     const params = useParams();
     const [product, setProduct] = useState({});
-    console.log(product.category?.name);
+    const [relatedProducts, setRelatedProducts] = useState([]);
+
+
     //initial product detail
     useEffect(() => {
         if (params?.slug) getProduct()
@@ -15,9 +18,23 @@ const ProductDetails = () => {
     const getProduct = async () => {
         try {
             const { data } = await axios.get(`/api/v1/product/get-product/${params.slug}`);
-            setProduct(data?.product)
+            setProduct(data?.product);
+            getSimilarProduct(data?.product._id, data?.product.category._id)
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    //get similar product
+    const getSimilarProduct = async (pid, cid) => {
+        console.log(pid, cid);
+        try {
+            const { data } = await axios.get(`/api/v1/product/related-product/${pid}/${cid}`);
+            setRelatedProducts(data?.products)
+            console.log("line34" + data?.products);
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message)
         }
     }
     return (
@@ -35,8 +52,29 @@ const ProductDetails = () => {
                     <button href="#" className="btn btn-secondary ms-1">Add to card</button>
                 </div>
             </div>
-            <div className="row">
-                similar products
+            <hr />
+            <div className="row container">
+                <h6> similar products</h6>
+                {relatedProducts.length < 1 && <p className='text-center'>No Similar Product found</p>}
+                <div className="d-flex flex-wrap">
+                    {
+                        relatedProducts?.map((p) => (
+
+                            <div className="card m-2" style={{ width: '18rem' }} key={p._id}>
+                                <img src={`/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} />
+                                <div className="card-body">
+                                    <h5 className="card-title">{p.name}</h5>
+                                    <p className="card-text">{p.description.substring(0, 20)} ...</p>
+                                    <p className="card-text text-danger">$ {p.price}</p>
+                                    <p className="card-text text-success">{p.category?.name}</p>
+                                    <button href="#" className="btn btn-secondary ms-1">Add to card</button>
+
+                                </div>
+                            </div>
+
+                        ))
+                    }
+                </div>
             </div>
         </Layout>
     )
