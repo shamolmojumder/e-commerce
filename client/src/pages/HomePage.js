@@ -6,12 +6,15 @@ import { useEffect } from "react";
 import { Checkbox, Radio } from 'antd';
 import { Prices } from "../components/Prices";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useCart } from "../context/cart";
 
 const HomePage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [cart, setCart] = useCart();
+  console.log(cart);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  console.log(products);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
@@ -133,7 +136,7 @@ const HomePage = () => {
             <button className="btn btn-danger" onClick={() => window.location.reload()}>Reset the filter</button>
           </div>
         </div>
-        <div className="col-md-9 offset-1">
+        <div className="col-md-9">
           <h1 className="text-center"> All products</h1>
           <div className="d-flex flex-wrap">
             {
@@ -147,7 +150,10 @@ const HomePage = () => {
                     <p className="card-text text-danger">$ {p.price}</p>
                     <p className="card-text text-success">{p.category}</p>
                     <button href="#" className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>More details</button>
-                    <button href="#" className="btn btn-secondary ms-1">Add to card</button>
+                    <button href="#" className="btn btn-secondary ms-1" onClick={() => {
+                      setCart([...cart, p]);
+                      toast.success("Item added to the cart")
+                    }}>Add to card</button>
 
                   </div>
                 </div>

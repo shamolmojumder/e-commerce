@@ -3,4 +3,4 @@ Used MVC
 
 MERN project
 
-category page and filters Ecommerce Mern App Mern Stack Project
+Shopping Cart Ecommerce Mern App Mern Stack Project 11:00
