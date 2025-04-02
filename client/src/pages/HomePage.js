@@ -133,7 +133,7 @@ const HomePage = () => {
             <button className="btn btn-danger" onClick={() => window.location.reload()}>Reset the filter</button>
           </div>
         </div>
-        <div className="col-md-9">
+        <div className="col-md-9 offset-1">
           <h1 className="text-center"> All products</h1>
           <div className="d-flex flex-wrap">
             {

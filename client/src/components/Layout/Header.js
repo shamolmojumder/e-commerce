@@ -3,9 +3,12 @@ import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
+import useCategory from "../../hooks/useCategory";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const categories = useCategory();
+  console.log("categories", categories);
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -41,11 +44,26 @@ const Header = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/category" className="nav-link ">
-                  Category
-                </NavLink>
+
+              {/* dropdown start */}
+              <li className="nav-item dropdown">
+                <Link className="nav-link dropdown-toggle" to={'/categories'} id="navbarDropdown" data-bs-toggle="dropdown">
+                  Categories
+                </Link>
+
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li >
+                    <Link className="dropdown-item" to={'/categories'}>All Categories</Link>
+                  </li>
+                  {categories?.map((c) => (
+                    <li key={c._id}>
+                      <Link className="dropdown-item" to={`/category/${c.slug}`}>{c.name}</Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
+              {/* dropdown end */}
+
               {!auth?.user ? (
                 <>
                   <li className="nav-item">
