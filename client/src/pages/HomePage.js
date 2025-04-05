@@ -145,13 +145,14 @@ const HomePage = () => {
                 <div className="card m-2" style={{ width: '18rem' }} key={p._id}>
                   <img src={`/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} />
                   <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title">{p.name.substring(0, 20)} ...</h5>
                     <p className="card-text">{p.description.substring(0, 20)} ...</p>
                     <p className="card-text text-danger">$ {p.price}</p>
                     <p className="card-text text-success">{p.category}</p>
                     <button href="#" className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>More details</button>
                     <button href="#" className="btn btn-secondary ms-1" onClick={() => {
                       setCart([...cart, p]);
+                      localStorage.setItem("cart", JSON.stringify([...cart, p]))
                       toast.success("Item added to the cart")
                     }}>Add to card</button>
 
