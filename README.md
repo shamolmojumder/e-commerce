@@ -3,4 +3,4 @@ Used MVC
 
 MERN project
 
-Shopping Cart Ecommerce Mern App Mern Stack Project 16:40
+Manage User Profile Ecommerce Mern App Mern Stack Project 17:50

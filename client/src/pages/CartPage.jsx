@@ -20,7 +20,8 @@ const CartPage = () => {
             return total.toLocaleString('en-US', {
                 style: "currency",
                 currency: "USD"
-            })
+            });
+
         } catch (error) {
             console.log(error);
         }
@@ -34,6 +35,7 @@ const CartPage = () => {
             myCart.splice(index, 1);
             setCart(myCart);
             localStorage.setItem("cart", JSON.stringify(myCart))
+            toast.success("you remove an item")
         } catch (error) {
             console.log(error);
         }
