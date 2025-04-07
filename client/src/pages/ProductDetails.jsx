@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 const ProductDetails = () => {
+    const navigate = useNavigate();
     const params = useParams();
     const [product, setProduct] = useState({});
     const [relatedProducts, setRelatedProducts] = useState([]);
@@ -68,7 +69,7 @@ const ProductDetails = () => {
                                     <p className="card-text text-danger">$ {p.price}</p>
                                     <p className="card-text text-success">{p.category?.name}</p>
                                     <button href="#" className="btn btn-secondary ms-1">Add to card</button>
-
+                                    <button href="#" className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>More details</button>
                                 </div>
                             </div>
 
