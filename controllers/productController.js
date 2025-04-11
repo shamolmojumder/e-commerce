@@ -5,14 +5,15 @@ import slugify from 'slugify';
 import braintree from 'braintree';
 
 
-//braintree payment getway
+// braintree payment getway
 var gateway = new braintree.BraintreeGateway({
     environment: braintree.Environment.Sandbox,
-    merchantId: process.env.BRAINTREE_MERCHANT_ID,
-    publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-    privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+    merchantId: process.env.BRAINTREE_MERCHANT_ID || "qyb754tc968r56hx",
+    publicKey: process.env.BRAINTREE_PUBLIC_KEY || "q968xn4wjxmbkdfq",
+    privateKey: process.env.BRAINTREE_PRIVATE_KEY || "64e98dc72782e3b4c189f339695525c6",
 });
-//crate product 
+// console.log("gateway", gateway);
+//create product 
 export const createProductController = async (req, res) => {
     try {
         const { name, slug, description, price, category, quantity, shipping } = req.fields;
@@ -302,3 +303,17 @@ export const productCategoryController = async (req, res) => {
         })
     }
 }
+
+
+//braintreeTokenController
+// token
+export const braintreeTokenController = async (req, res) => {
+    try {
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// payment
+export const braintreePaymentController = () => { };
