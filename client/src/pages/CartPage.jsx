@@ -93,6 +93,7 @@ const CartPage = () => {
             console.log(data);
             setCart([]);
             toast.success("Order successfully")
+            navigate("/dashboard/user/orders");
         } catch (error) {
             console.log(error);
             toast.error("error found in cod")
