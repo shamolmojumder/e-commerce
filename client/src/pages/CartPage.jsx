@@ -82,6 +82,22 @@ const CartPage = () => {
             toast.error(error)
         }
     }
+
+    // cod function
+    const cod = async () => {
+        try {
+            const { data } = await axios.post('/api/v1/product/cash-on-delivery', {
+                cart
+            })
+            localStorage.removeItem('cart');
+            console.log(data);
+            setCart([]);
+            toast.success("Order successfully")
+        } catch (error) {
+            console.log(error);
+            toast.error("error found in cod")
+        }
+    }
     return (
         <Layout>
             <div className="container">
@@ -132,15 +148,15 @@ const CartPage = () => {
                             </div>
                         )}
                         <div className="mt-2">
-                            {
+                            {/* {
                                 !cart?.length ? ("Add product") : (
                                     <>
                                         <DropIn options={{ authorization: clientToken || "sandbox_s9gd7m2p_vp62s592633kc5p5", paypal: { flow: "vault" } }} onInstance={instance => setInstance(instance)} />
                                         <button className='btn btn-primary' onClick={handlePayment} disabled={loading || !instance || !auth?.user?.address}>{loading ? "processing ..." : "Make Payment"}</button>
                                     </>
                                 )
-                            }
-
+                            } */}
+                            {cart?.length && <button onClick={cod} className='btn btn-primary'>Cash On delivery</button>}
                         </div>
                     </div>
                 </div>

@@ -358,3 +358,41 @@ export const braintreePaymentController = async (req, res) => {
         console.log(error);
     }
 };
+
+
+//cash-on-delivery
+export const cashOnDelivery = async (req, res) => {
+    try {
+        const { cart } = req.body;
+
+        if (!cart || cart.length === 0) {
+            return res.status(400).json({ message: "Cart is empty" });
+        }
+
+        let total = 0;
+        cart.forEach((item) => {
+            total += item.price;
+        });
+
+        const order = new orderModel({
+            products: cart.map(i => i._id), // assuming cart items have _id from the Products collection
+            payment: {
+                method: "Cash on Delivery",
+                amount: total,
+                success: true
+            },
+            buyer: req.user._id, // assuming you have authentication and `req.user` contains the logged-in user
+        });
+
+        await order.save();
+
+        res.status(201).json({
+            message: "Order placed successfully",
+            order
+        });
+
+    } catch (error) {
+        console.error("Error placing order:", error);
+        res.status(500).json({ message: "Something went wrong" });
+    }
+};
