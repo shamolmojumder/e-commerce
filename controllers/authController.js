@@ -199,12 +199,28 @@ export const getOrdersController = async (req, res) => {
   try {
     const orders = await orderModel.find({ buyer: req.user._id }).populate("products", "-photo").populate("buyer", "name")
     console.log(orders.length);
-    res.json(orders)
+    res.json(orders);
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
       message: "Error getting the order from getOrdersController"
-    })
-  }
-}
+    });
+  };
+};
+
+
+// get all orders
+export const getAllOrdersController = async (req, res) => {
+  try {
+    const orders = await orderModel.find({}).populate("products", "-photo").populate("buyer", "name").sort({ createdAt: "-1" })
+    console.log(orders.length);
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error getting the order from getOrdersController"
+    });
+  };
+};
