@@ -10,6 +10,7 @@ const { Option } = Select;
 
 const AdminOrders = () => {
     const [status, setStatus] = useState(["Not Process", "Processing", "Shipped", "delivered", "cancel"]);
+    console.log(status);
     const [changeStatus, setChangeStatus] = useState("");
     const [orders, setOrders] = useState([]);
     const [auth, setAuth] = useAuth();
@@ -50,7 +51,15 @@ const AdminOrders = () => {
                                     <tbody>
                                         <tr>
                                             <td>{i + 1}</td>
-                                            <td>{o?.status}</td>
+                                            <td>
+                                                <Select bordered={false} onChange={(value) => setChangeStatus(value)} defaultValue={o?.status}>
+                                                    {
+                                                        status.map((s, i) => (
+                                                            <Option key={i} value={status}>{s} </Option>
+                                                        ))
+                                                    }
+                                                </Select>
+                                            </td>
                                             <td>{o?.buyer?.name}</td>
                                             <td>{moment(o?.createAt).fromNow()}</td>
                                             <td>{o?.payment.method}</td>
