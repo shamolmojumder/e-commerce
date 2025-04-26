@@ -10,9 +10,9 @@ const { Option } = Select;
 
 const AdminOrders = () => {
     const [status, setStatus] = useState(["Not Process", "Processing", "Shipped", "delivered", "cancel"]);
-    console.log(status);
     const [changeStatus, setChangeStatus] = useState("");
     const [orders, setOrders] = useState([]);
+    console.log(orders);
     const [auth, setAuth] = useAuth();
     const getOrders = async () => {
         try {
@@ -26,6 +26,14 @@ const AdminOrders = () => {
     useEffect(() => {
         if (auth?.token) getOrders();
     }, [auth?.token])
+    const handleChange = async (orderId, value) => {
+        try {
+            const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, { status: value });
+            getOrders();
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <Layout title={"All Orders Data"}>
             <div className="row">
@@ -52,7 +60,7 @@ const AdminOrders = () => {
                                         <tr>
                                             <td>{i + 1}</td>
                                             <td>
-                                                <Select bordered={false} onChange={(value) => setChangeStatus(value)} defaultValue={o?.status}>
+                                                <Select bordered={false} onChange={(value) => handleChange(o._id, value)} defaultValue={o?.status}>
                                                     {
                                                         status.map((s, i) => (
                                                             <Option key={i} value={status}>{s} </Option>
@@ -61,7 +69,7 @@ const AdminOrders = () => {
                                                 </Select>
                                             </td>
                                             <td>{o?.buyer?.name}</td>
-                                            <td>{moment(o?.createAt).fromNow()}</td>
+                                            <td>{moment(o?.createdAt).fromNow()}</td>
                                             <td>{o?.payment.method}</td>
                                             <td>{o?.products?.length}</td>
                                         </tr>

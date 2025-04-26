@@ -11,6 +11,10 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.ObjectId,
         ref: "users"
     },
+    // price: {
+    //     type: Number, // Store the price at the time of the order
+    //     required: true,
+    // },
     status: {
         type: String,
         default: "Not Process",
