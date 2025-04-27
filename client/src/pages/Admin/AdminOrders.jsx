@@ -9,7 +9,7 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 const AdminOrders = () => {
-    const [status, setStatus] = useState(["Not Process", "Processing", "Shipped", "delivered", "cancel"]);
+    const [status, setStatus] = useState(["Not Process", "Processing", "Shipped", "Delivered", "Cancel"]);
     const [changeStatus, setChangeStatus] = useState("");
     const [orders, setOrders] = useState([]);
     console.log(orders);
@@ -63,7 +63,7 @@ const AdminOrders = () => {
                                                 <Select bordered={false} onChange={(value) => handleChange(o._id, value)} defaultValue={o?.status}>
                                                     {
                                                         status.map((s, i) => (
-                                                            <Option key={i} value={status}>{s} </Option>
+                                                            <Option key={i} value={s}>{s} </Option>
                                                         ))
                                                     }
                                                 </Select>
