@@ -36,9 +36,17 @@ app.use('/api/v1/product', productRoutes);
 //   res.send("<h1>Welcome to ecommerce app</h1>");
 // });
 
-app.use('*', function (req, res) {
-  res.sendFile(path.join(__dirname, './client/build/index.html'))
-})
+// test 1
+// app.use('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, './client/build/index.html'))
+// })
+
+//test 2
+
+app.use(express.static(path.join(__dirname, '/client/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 //PORT
 const PORT = process.env.PORT || 8080;
