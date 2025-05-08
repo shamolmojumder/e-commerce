@@ -8,6 +8,7 @@ import { Prices } from "../components/Prices";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
+import categoryJson from "../json/ecommerce.categories.json";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const HomePage = () => {
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get('/api/v1/category/get-category')
+      // const { data } = await axios.get(categoryJson)
       if (data?.success) {
         setCategories(data?.category)
       }

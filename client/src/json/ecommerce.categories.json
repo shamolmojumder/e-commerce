@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "67e049859e4564631e786cb8"
+  },
+  "name": "women",
+  "slug": "women",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e0498b9e4564631e786cbd"
+  },
+  "name": "men",
+  "slug": "men",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e049949e4564631e786cc3"
+  },
+  "name": "smart watches",
+  "slug": "smart-watches",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e0499d9e4564631e786cc8"
+  },
+  "name": "wall clocks",
+  "slug": "wall-clocks",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e049a59e4564631e786ccd"
+  },
+  "name": "stopwatches",
+  "slug": "stopwatches",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e049ab9e4564631e786cd2"
+  },
+  "name": "alarm clock",
+  "slug": "alarm-clock",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e63915e675d2bc110007d5"
+  },
+  "name": "games",
+  "slug": "games",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67eb85b1af23a75f7e4fda50"
+  },
+  "name": "Test ",
+  "slug": "test",
+  "__v": 0
+}]
